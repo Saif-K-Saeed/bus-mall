@@ -42,7 +42,7 @@ function renderImg() {
   while (leftIndex === centerIndex || leftIndex=== rightIndex || centerIndex ===rightIndex) {
     leftIndex = randomImage();
   }
-  leftImg.setAttribute('src', imgNameAraay[leftIndex].gImg);
+  leftImg.setAttribute('src',`./img/${imgNameAraay[leftIndex].gImg}`);
   centerImg.setAttribute('src', imgNameAraay[centerIndex].gImg);
   rightImg.setAttribute('src', imgNameAraay[rightIndex].gImg);
   imgNameAraay[leftIndex].views++;
