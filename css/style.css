@@ -24,18 +24,6 @@
     list-style: square inside;
     padding:10px;
   }
-/*   
-  button {
-    background-color: #1d2d2f;
-    border: 2px solid #1d2d2f;
-    color: #eee;
-    height: 45px;
-    transition-property: background-color, color, border-radius;
-    transition-duration: .2s;
-    transition-timing-function: linear;
-    width: 100px;
-  } */
-
   
   footer {
     height: 100px;
@@ -43,27 +31,4 @@
     width: 90%;
   }
   
-  /* #products {
-    display: inline-block;
-    margin:auto;
-    text-align:center;
-    width: 100%;
-  } */
-  
-  /* #products img {
-    border: 4px groove  #40585b;
-  }
-  
-  #results-hidden {
-    display:none;
-  }
-  
-  #results-show {
-    position: relative;
-    margin:auto; 
-    width:60vw;
-  }
-  
-  .hidden {
-    display:none; */
-  /* } */
+
