@@ -6,13 +6,14 @@ let centerImg = document.getElementById('centerImg');
 let rightImg = document.getElementById('rightImg');
 let result = document.getElementById('results');
 let productImages = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'water-can.jpg', 'wine-glass.jpg'];
-let maxAttempts = 25;
+let maxAttempts = 3
+;
 let attempt = 1;
 let imgNameAraay = [];
 
 function PrImage(imgName) {
   this.gName = imgName.split('.')[0];
-  this.gImg = `./img/${imgName}`;
+  this.gImg = `img/${imgName}`;
   this.votes = 0;
   this.views = 0;
   imgNameAraay.push(this);
@@ -42,7 +43,7 @@ function renderImg() {
   while (leftIndex === centerIndex || leftIndex=== rightIndex || centerIndex ===rightIndex) {
     leftIndex = randomImage();
   }
-  leftImg.setAttribute('src',`./img/${imgNameAraay[leftIndex].gImg}`);
+  leftImg.setAttribute('src', imgNameAraay[leftIndex].gImg);
   centerImg.setAttribute('src', imgNameAraay[centerIndex].gImg);
   rightImg.setAttribute('src', imgNameAraay[rightIndex].gImg);
   imgNameAraay[leftIndex].views++;
