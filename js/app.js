@@ -13,7 +13,7 @@ let imgNameAraay = [];
 
 function PrImage(imgName) {
   this.gName = imgName.split('.')[0];
-  this.gImg = `img/${imgName}`;
+  this.gImg = `./img/${imgName}`;
   this.votes = 0;
   this.views = 0;
   imgNameAraay.push(this);
