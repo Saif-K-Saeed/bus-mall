@@ -6,8 +6,7 @@ let centerImg = document.getElementById('centerImg');
 let rightImg = document.getElementById('rightImg');
 let result = document.getElementById('results');
 let productImages = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'water-can.jpg', 'wine-glass.jpg'];
-let maxAttempts = 3
-;
+let maxAttempts = 25;
 let attempt = 1;
 let imgNameAraay = [];
 
