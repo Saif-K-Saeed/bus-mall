@@ -7,22 +7,20 @@ let rightImg = document.getElementById('rightImg');
 let result = document.getElementById('results');
 let productImages = ['bag.jpg', 'banana.jpg', 'bathroom.jpg', 'boots.jpg', 'breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg', 'dog-duck.jpg', 'dragon.jpg', 'pen.jpg', 'pet-sweep.jpg', 'scissors.jpg', 'shark.jpg', 'sweep.png', 'tauntaun.jpg', 'unicorn.jpg', 'water-can.jpg', 'wine-glass.jpg'];
 
-let maxAttempts = 3;
+let maxAttempts = 5;
 let attempt = 1;
-
 let imgNameAraay = [];
-
 let views = [];
 let votes = [];
 let pNames = [];
 
 function PrImage(imgName) {
-  this.gName = imgName.split('.')[0];
-  this.gImg = `img/${imgName}`;
+  this.pName = imgName.split('.')[0];
+  this.pImg = `img/${imgName}`;
   this.votes = 0;
   this.views = 0;
   imgNameAraay.push(this);
-  let pNames = [];
+  let pNames = [this.pName];
 }
 
 
@@ -58,9 +56,9 @@ function renderImg() {
   imagesPerRound[2]=rightIndex;
 
 
-  leftImg.setAttribute('src', imgNameAraay[leftIndex].gImg);
-  centerImg.setAttribute('src', imgNameAraay[centerIndex].gImg);
-  rightImg.setAttribute('src', imgNameAraay[rightIndex].gImg);
+  leftImg.setAttribute('src', imgNameAraay[leftIndex].pImg);
+  centerImg.setAttribute('src', imgNameAraay[centerIndex].pImg);
+  rightImg.setAttribute('src', imgNameAraay[rightIndex].pImg);
 
   imgNameAraay[leftIndex].views++;
   imgNameAraay[centerIndex].views++;
@@ -76,7 +74,7 @@ function clickHandler(event) {
     
   if (attempt < maxAttempts) {
     let clickedImage = event.target.id;
-     if (clickedImage === 'leftImg') {
+    if (clickedImage === 'leftImg') {
       imgNameAraay[leftIndex].votes++;
     } else if (clickedImage === 'centerImg') {
       imgNameAraay[centerIndex].votes++;
@@ -86,7 +84,8 @@ function clickHandler(event) {
     renderImg();
     // console.log(imgNameAraay);
     attempt++;
-  } else {
+  
+ } else {
 
     let button = document.getElementById('display-button').onclick = function() {display()};
      let arrImg =[];
@@ -96,10 +95,10 @@ function clickHandler(event) {
       for (let i = 0; i < imgNameAraay.length; i++) {
         let liEl = document.createElement('li');
         result.appendChild(liEl);
-     liEl.textContent = `${imgNameAraay[i].gName} has ${imgNameAraay[i].votes} votes and  ${imgNameAraay[i].views} views.`;
-     votes.push(productImages[i].votes);
-     views.push(productImages[i].views);
-     arrImg.push(productImages[i].pName);
+     liEl.textContent = `${imgNameAraay[i].pName} has ${imgNameAraay[i].votes} votes and  ${imgNameAraay[i].views} views.`;
+     votes.push(imgNameAraay[i].votes);
+     views.push(imgNameAraay[i].views);
+     arrImg.push(imgNameAraay[i].pName);
 
 
       }
@@ -108,44 +107,44 @@ function clickHandler(event) {
       rightImg.removeEventListener('click', clickHandler);
       chartRender();
     }
+  }
 }
-}
+
 
 function chartRender() {
   let ctx = document.getElementById('myChart').getContext('2d');
   let myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
+    type: 'bar',
+    data: {
           labels: pNames,
           datasets: [{
-              label: '# of Votes',
-              data: votes,
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255, 99, 132, 1)'
-              ],
-              borderWidth: 1
+            label: '# of Votes',
+            data: votes,
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
           }, {
-              label: '# of views',
-              data: views,
-              backgroundColor: [
-                  'rgba(54, 162, 235, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(54, 162, 235, 1)'
-              ],
-              borderWidth: 1
+            label: '# of views',
+            data: views,
+            backgroundColor: [
+              'rgba(54, 162, 235, 0.2)'
+            ],
+            borderColor: [
+              'rgba(54, 162, 235, 1)'
+            ],
+            borderWidth: 1
           }]
-      },
-      options: {
+        },
+        options: {
           scales: {
-              y: {
-                  beginAtZero: true
-              }
+            y: {
+              beginAtZero: true
+            }
           }
-      }
-  });
-}
-
+        }
+      });
+    }
