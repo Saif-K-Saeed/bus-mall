@@ -20,7 +20,7 @@ function PrImage(imgName) {
   this.votes = 0;
   this.views = 0;
   imgNameAraay.push(this);
-  let pNames = [this.pName];
+  pNames.push(this.pName)
 }
 
 
@@ -48,6 +48,8 @@ function renderImg() {
   while (leftIndex === centerIndex || leftIndex=== rightIndex || centerIndex ===rightIndex || imagesPerRound.includes(leftIndex) ||
   imagesPerRound.includes(centerIndex) || imagesPerRound.includes(rightIndex)) {
     leftIndex = randomImage();
+    centerIndex = randomImage();
+  rightIndex = randomImage();//5
   }
 
   imagesPerRound = [];
@@ -71,8 +73,8 @@ centerImg.addEventListener('click', clickHandler);
 rightImg.addEventListener('click', clickHandler);
 
 function clickHandler(event) {
-    
-  if (attempt < maxAttempts) {
+
+  if (attempt <= maxAttempts) {
     let clickedImage = event.target.id;
     if (clickedImage === 'leftImg') {
       imgNameAraay[leftIndex].votes++;
@@ -92,6 +94,7 @@ function clickHandler(event) {
     
     function display() {
 
+     
       for (let i = 0; i < imgNameAraay.length; i++) {
         let liEl = document.createElement('li');
         result.appendChild(liEl);
@@ -101,50 +104,52 @@ function clickHandler(event) {
      arrImg.push(imgNameAraay[i].pName);
 
 
+     document.getElementById('display-button').style.display = 'none';
       }
       leftImg.removeEventListener('click', clickHandler);
       centerImg.removeEventListener('click', clickHandler);
       rightImg.removeEventListener('click', clickHandler);
-      chartRender();
+      chartRender();  
     }
   }
 }
 
+// console.log(votes,views);                                                                  
 
 function chartRender() {
   let ctx = document.getElementById('myChart').getContext('2d');
   let myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
+      type: 'bar',
+      data: {
           labels: pNames,
           datasets: [{
-            label: '# of Votes',
-            data: votes,
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 1
+              label: '# of Votes',
+              data: votes,
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)'
+              ],
+              borderWidth: 1
           }, {
-            label: '# of views',
-            data: views,
-            backgroundColor: [
-              'rgba(54, 162, 235, 0.2)'
-            ],
-            borderColor: [
-              'rgba(54, 162, 235, 1)'
-            ],
-            borderWidth: 1
+              label: '# of views',
+              data: views,
+              backgroundColor: [
+                  'rgba(54, 162, 235, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(54, 162, 235, 1)'
+              ],
+              borderWidth: 1
           }]
-        },
-        options: {
+      },
+      options: {
           scales: {
-            y: {
-              beginAtZero: true
-            }
+              y: {
+                  beginAtZero: true
+              }
           }
-        }
-      });
-    }
+      }
+  });
+}
