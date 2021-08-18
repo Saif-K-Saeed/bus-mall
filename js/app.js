@@ -23,6 +23,23 @@ function PrImage(imgName) {
   pNames.push(this.pName)
 }
 
+function saveToLocalStorage() {
+  let data = JSON.stringify( imgNameAraay);
+  localStorage.setItem('product', data);
+}
+function readFromLocalStorage() {
+  let stringObj = localStorage.getItem('product');
+  let normalObj = JSON.parse(stringObj);
+
+  if (normalObj) {
+      products = normalObj;
+      renderImg();
+  }
+}
+readFromLocalStorage();
+
+
+
 
 
 for (let i = 0; i < productImages.length; i++) {
@@ -38,6 +55,7 @@ let leftIndex;
 let centerIndex;
 let rightIndex;
 let imagesPerRound = [];
+
 
 
 function renderImg() {
@@ -106,6 +124,7 @@ function clickHandler(event) {
 
      document.getElementById('display-button').style.display = 'none';
       }
+      saveToLocalStorage();
       leftImg.removeEventListener('click', clickHandler);
       centerImg.removeEventListener('click', clickHandler);
       rightImg.removeEventListener('click', clickHandler);
