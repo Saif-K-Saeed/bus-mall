@@ -23,20 +23,7 @@ function PrImage(imgName) {
   pNames.push(this.pName)
 }
 
-function saveToLocalStorage() {
-  let data = JSON.stringify( imgNameAraay);
-  localStorage.setItem('product', data);
-}
-function readFromLocalStorage() {
-  let stringObj = localStorage.getItem('product');
-  let normalObj = JSON.parse(stringObj);
 
-  if (normalObj) {
-      products = normalObj;
-      renderImg();
-  }
-}
-readFromLocalStorage();
 
 
 
@@ -56,7 +43,20 @@ let centerIndex;
 let rightIndex;
 let imagesPerRound = [];
 
+function saveToLocalStorage() {
+  let data = JSON.stringify( imgNameAraay);
+  localStorage.setItem('product', data);
+}
+function readFromLocalStorage() {
+  let stringObj = localStorage.getItem('product');
+  let normalObj = JSON.parse(stringObj);
 
+  if (normalObj) {
+    imgNameAraay = normalObj;
+      renderImg();
+  }
+}
+readFromLocalStorage();
 
 function renderImg() {
   leftIndex = randomImage();//0
